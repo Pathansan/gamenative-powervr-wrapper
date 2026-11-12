@@ -14,11 +14,13 @@ This repository documents the architecture, root cause analysis, binary disassem
 
 ## Repository Contents
 
+- [`AGENT.md`](AGENT.md): **Comprehensive Engineering & Research Log** detailing the complete investigation, root-cause teardown, ARM64EC `x18` TEB register preservation, and wrapper evolution from v1 to v12.
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md): Complete execution stack, translation layers, and GameNative `.wcp` packaging lifecycle.
 - [`docs/ROOT_CAUSE_ANALYSIS.md`](docs/ROOT_CAUSE_ANALYSIS.md): Comprehensive teardown of the Wine `loader_thunks.c:87` assertion (`!status && "vkAllocateMemory"`), DXVK Call #7 QueryPool allocation, and the PowerVR AHB Catch-22.
 - [`docs/POWERVR_TENSOR_G5_KNOWLEDGE_BASE.md`](docs/POWERVR_TENSOR_G5_KNOWLEDGE_BASE.md): Hardware specifications, driver constraints, geometry shader emulation, placed memory (`VK_EXT_map_memory_placed`), and critical environment variables.
 - [`docs/WRAPPER_DISASSEMBLY_RECONSTRUCTION.md`](docs/WRAPPER_DISASSEMBLY_RECONSTRUCTION.md): Exact disassembly maps, register states, and C pseudocode reconstruction of `libvulkan_wrapper.so`.
-- [`tools/build_wrapper.py`](tools/build_wrapper.py): Automated Python patcher that modifies ARM64 instructions, injects `pNext` sanitization into RX padding, and generates `.wcp` packages.
+- [`tools/build_wrapper_v12.py`](tools/build_wrapper_v12.py): Latest production automated patcher implementing ARM64EC `x18` TEB preservation, 3-way `pNext` struct unlinking, and `.wcp` packaging.
+- [`packages/wrapper-powervr-fix-v12.wcp`](packages/wrapper-powervr-fix-v12.wcp): Built and ready-to-deploy GameNative wrapper package for PowerVR DXT.
 - [`configs/No_Mans_Sky_PowerVR.json`](configs/No_Mans_Sky_PowerVR.json): Validated container configuration profile with `DISABLE_EXTERNAL_FD=1` and PowerVR-specific flags.
 
 ---
